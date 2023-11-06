@@ -3,7 +3,7 @@ const UserRoute = Router();
 
 import UserController from "../controllers/user.controller.js"
 
-UserRoute.get("/", UserController.soma)
+UserRoute.post("/create", UserController.UserCreate)
 
 export default UserRoute
 

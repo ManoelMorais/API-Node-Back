@@ -3,7 +3,10 @@ const app = express();
 
 import UserRoute from "./src/routes/user.route.js";
 
-app.use("/soma", UserRoute)
+const porta = 3100
+
+app.use(express.json())
+app.use("/user", UserRoute)
 
 
-app.listen(3100);
+app.listen(porta, () => console.log(`Servidor rodando na porta ${porta}`));
