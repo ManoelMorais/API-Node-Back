@@ -1,7 +1,10 @@
 import UserModels from "../models/User.js";
 
-const UserCreate = (body) => UserModels.create(body)
+const UserCreateService = (body) => UserModels.create(body);
+
+const findAllService = () => UserModels.find();
 
 export default {
-    UserCreate,
-}
+  UserCreateService,
+  findAllService,
+};
