@@ -64,8 +64,44 @@ const UserID = async (req, res) => {
     return res.status(400).send(e.message);
   }
 };
+
+const UserUpdate = async (req, res) => {
+  try {
+    const { name, username, email, password, avatar, background } = req.body;
+    
+    if (!name && !username && !email && !password && !avatar && !background) {
+      res.status(400).send({ message: "Submit at least one fields for update" });
+    }
+    const id = req.params.id; //pedir/pegar o id 01 verificador
+
+    if(!mongoose.Types.ObjectId.isValid(id)){ //varifica o id no bando  01 verificador
+      return res.status(400).send({ message: "Invalid id"})
+    }
+    
+    const user =  await userService.findIDService(id)
+
+    if (!user) {
+      return res.status(400).send({ message: "User not found" });
+    }
+
+    await userService.UpdateService(
+      id,
+      name,
+      username,
+      email,
+      password,
+      avatar,
+      background
+    )
+
+    res.send({ message: "User successfully updated!"})
+  } catch (e) {
+    return res.status(400).send(e.message)
+  }
+}
 export default {
   UserCreate,
   UserAll,
   UserID,
+  UserUpdate,
 };
