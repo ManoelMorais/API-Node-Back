@@ -46,17 +46,8 @@ const UserAll = async (req, res) => {
 
 const UserID = async (req, res) => {
   try {
-    // const id = req.id; parou se ser usado //pega o id, 01 verificador, sofreu alterações pois agora ele esta sendo passado pelo middlewares
-
-    // if(!mongoose.Types.ObjectId.isValid(id)){ //varifica o id no bando  01 verificador
-    //   return res.status(400).send({ message: "Invalid ID"})
-    // }
-
-    const user = req.user; //verifica o id que esta sendo passado no bando de dados, 02 verificador, sofreu alterações pois agora ele esta sendo passado pelo middlewares
-
-    // if (!user) {
-    //   return res.status(400).send({ message: "User not found" });
-    // }
+    // essa função esta sendo passada nos middlewares
+    const user = req.user; // sofreu alterações pois agora ele esta sendo passado pelo middlewares
 
     res.send(user);
   } catch (e) {
@@ -66,22 +57,14 @@ const UserID = async (req, res) => {
 
 const UserUpdate = async (req, res) => {
   try {
+    // boa parte da função esta sendo passada nos middlewares
     const { name, username, email, password, avatar, background } = req.body;
     
     if (!name && !username && !email && !password && !avatar && !background) {
       res.status(400).send({ message: "Submit at least one fields for update" });
     }
-    const {id, user} = req; //pedir/pegar o id 01 verificador sofreu alterações pois agora ele esta sendo passado pelo middlewares
+    const {id, user} = req; // sofreu alterações pois agora ele esta sendo passado pelo middlewares
 
-    // if(!mongoose.Types.ObjectId.isValid(id)){ //varifica o id no bando  01 verificador
-    //   return res.status(400).send({ message: "Invalid id"})
-    // }
-    
-    // const user =  await userService.findIDService(id)
-
-    // if (!user) {
-    //   return res.status(400).send({ message: "User not found" });
-    // }
 
     await userService.UpdateService(
       id,
