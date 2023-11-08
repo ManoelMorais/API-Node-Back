@@ -1,5 +1,4 @@
 import userService from "../services/user.service.js";
-import mongoose from "mongoose"
 
 const UserCreate = async (req, res) => {
   try {
@@ -47,17 +46,17 @@ const UserAll = async (req, res) => {
 
 const UserID = async (req, res) => {
   try {
-    const id = req.params.id; //pega o id, 01 verificador
+    // const id = req.id; parou se ser usado //pega o id, 01 verificador, sofreu alterações pois agora ele esta sendo passado pelo middlewares
 
-    if(!mongoose.Types.ObjectId.isValid(id)){ //varifica o id no bando  01 verificador
-      return res.status(400).send({ message: "Invalid id"})
-    }
+    // if(!mongoose.Types.ObjectId.isValid(id)){ //varifica o id no bando  01 verificador
+    //   return res.status(400).send({ message: "Invalid ID"})
+    // }
 
-    const user = await userService.findIDService(id); //verifica o id que esta sendo passado no bando de dados, 02 verificador
+    const user = req.user; //verifica o id que esta sendo passado no bando de dados, 02 verificador, sofreu alterações pois agora ele esta sendo passado pelo middlewares
 
-    if (!user) {
-      return res.status(400).send({ message: "User not found" });
-    }
+    // if (!user) {
+    //   return res.status(400).send({ message: "User not found" });
+    // }
 
     res.send(user);
   } catch (e) {
@@ -72,24 +71,23 @@ const UserUpdate = async (req, res) => {
     if (!name && !username && !email && !password && !avatar && !background) {
       res.status(400).send({ message: "Submit at least one fields for update" });
     }
-    const id = req.params.id; //pedir/pegar o id 01 verificador
+    const {id, user} = req; //pedir/pegar o id 01 verificador sofreu alterações pois agora ele esta sendo passado pelo middlewares
 
-    if(!mongoose.Types.ObjectId.isValid(id)){ //varifica o id no bando  01 verificador
-      return res.status(400).send({ message: "Invalid id"})
-    }
+    // if(!mongoose.Types.ObjectId.isValid(id)){ //varifica o id no bando  01 verificador
+    //   return res.status(400).send({ message: "Invalid id"})
+    // }
     
-    const user =  await userService.findIDService(id)
+    // const user =  await userService.findIDService(id)
 
-    if (!user) {
-      return res.status(400).send({ message: "User not found" });
-    }
+    // if (!user) {
+    //   return res.status(400).send({ message: "User not found" });
+    // }
 
     await userService.UpdateService(
       id,
       name,
       username,
       email,
-      password,
       avatar,
       background
     )
