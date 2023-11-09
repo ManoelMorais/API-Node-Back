@@ -1,11 +1,14 @@
-import express from "express";
 import ConnectDataBase from "./src/database/banco.js"
-
-const app = express();
-
 import UserRoute from "./src/routes/user.route.js";
 
-const porta = 3100
+import dotenv from "dotenv"
+dotenv.config()
+
+import express from "express";
+const app = express();
+
+
+const porta = process.env.PORT || 3100
 
 ConnectDataBase()
 app.use(express.json())
