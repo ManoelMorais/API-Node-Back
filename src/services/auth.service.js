@@ -1,6 +1,10 @@
 import AuthModel from "../models/User.js";
+import jwt from "jsonwebtoken";
 
 const LoginService = (email) =>
   AuthModel.findOne({ email: email }).select("+password");
 
-export { LoginService };
+const gerenateToken = (id, email) =>
+  jwt.sign({ id: id, email: email }, process.env.JWT, { expiresIn: 86400 });
+
+export { LoginService, gerenateToken };
