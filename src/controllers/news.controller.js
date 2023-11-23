@@ -32,7 +32,7 @@ const NewsCreate = async (req, res) => {
       title,
       text,
       banner,
-      user: { _id: "654bac218e22e30eea81eb23" },
+      user: req.userId,
     });
 
     res.send(201);
