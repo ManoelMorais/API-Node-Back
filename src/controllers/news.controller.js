@@ -3,7 +3,8 @@ import {
   findALLService,
   countNewsService,
   topNewsService,
-  findNewsByID,
+  findNewsByIDService,
+  SearchByTitleService,
 } from "../services/news.service.js";
 
 export const NewsCreate = async (req, res) => {
@@ -133,9 +134,9 @@ export const NewsTop = async (req, res) => {
 
 export const NewsByID = async (rew, res) => {
   try {
-    const { id }= rew.params;
+    const { id } = rew.params;
 
-    const news = await findNewsByID(id);
+    const news = await findNewsByIDService(id);
 
     res.send({
       news: {
@@ -148,8 +149,38 @@ export const NewsByID = async (rew, res) => {
         name: news.user.name,
         username: news.user.username,
       },
-    })
+    });
   } catch (e) {
-    return res.status(500).send( e.message )
+    return res.status(500).send(e.message);
+  }
+};
+
+export const NewsSearchByTitle = async (req, res) => {
+  try {
+    const { title } = req.query;
+
+    const news = await SearchByTitleService(title);
+
+    if (news.length === 0) {
+      return res
+        .status(400)
+        .send({ message: "There are not news with this title" });
+    }
+
+    res.send({
+      results: news.map((newsIten) => ({
+        id: newsIten._id,
+        title: newsIten.title,
+        text: newsIten.text,
+        banner: newsIten.banner,
+        likes: newsIten.likes,
+        comments: newsIten.comments,
+        name: newsIten.user.name,
+        username: newsIten.user.username,
+        userAvatar: newsIten.user.avatar,
+      })),
+    });
+  } catch (e) {
+    return res.status(500).send(e.message);
   }
 };
