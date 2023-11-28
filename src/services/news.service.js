@@ -26,3 +26,12 @@ export const SearchByTitleService = (title) =>
 
 export const NewsByUserService = (id) =>
   NewsModell.find({ user: id }).sort({ _id: -1 }).populate("user");
+
+export const NewsUpdateService = (id, title, text, banner) =>
+  NewsModell.findOneAndUpdate(
+    { _id: id },
+    { title, text, banner },
+    { 
+      rawResult: true,
+    }
+  );
