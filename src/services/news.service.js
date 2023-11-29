@@ -31,9 +31,22 @@ export const NewsUpdateService = (id, title, text, banner) =>
   NewsModell.findOneAndUpdate(
     { _id: id },
     { title, text, banner },
-    { 
+    {
       rawResult: true,
     }
   );
 
-export const NewsDeleteService = (id) => NewsModell.findOneAndDelete({ _id: id})
+export const NewsDeleteService = (id) =>
+  NewsModell.findOneAndDelete({ _id: id });
+
+export const LikeNewsService = (idNews, userId) =>
+  NewsModell.findOneAndUpdate(
+    { _id: idNews, "likes.userId": { $nin: [userId] } },
+    { $push: { likes: { userId, created: new Date() } } }
+  );
+
+export const LikeNewsDeleteService = (idNews, userId) =>
+  NewsModell.findOneAndUpdate( 
+    { _id: idNews},
+    {  $pull: { likes: { userId } }}
+  );
