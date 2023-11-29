@@ -35,3 +35,5 @@ export const NewsUpdateService = (id, title, text, banner) =>
       rawResult: true,
     }
   );
+
+export const NewsDeleteService = (id) => NewsModell.findOneAndDelete({ _id: id})
