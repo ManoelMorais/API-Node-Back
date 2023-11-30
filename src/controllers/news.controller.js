@@ -10,6 +10,7 @@ import {
   NewsDeleteService,
   LikeNewsService,
   LikeNewsDeleteService,
+  NewsCommentService,
 } from "../services/news.service.js";
 
 export const NewsCreate = async (req, res) => {
@@ -265,7 +266,7 @@ export const NewsLike = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.userId;
-    const newsLike = await LikeNewsService( id, userId)
+    const newsLike = await LikeNewsService( id, userId )
     
     
     if(!newsLike){
@@ -274,6 +275,24 @@ export const NewsLike = async (req, res) => {
     }
 
     res.send("Like done successfully")
+  } catch (e) {
+    return res.status(500).send( e.message )
+  }
+};
+
+export const NewsComment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.userId;
+    const comment = req.body;
+
+    if(!comment){
+      return res.status(400).send({ message: "Write a message to comment"})
+    }
+
+    await NewsCommentService(id, comment, userId);
+
+    res.send("Comment done successfully")
   } catch (e) {
     return res.status(500).send( e.message )
   }

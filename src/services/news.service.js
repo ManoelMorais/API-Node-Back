@@ -46,7 +46,20 @@ export const LikeNewsService = (idNews, userId) =>
   );
 
 export const LikeNewsDeleteService = (idNews, userId) =>
-  NewsModell.findOneAndUpdate( 
-    { _id: idNews},
-    {  $pull: { likes: { userId } }}
+  NewsModell.findOneAndUpdate(
+    { _id: idNews },
+    { $pull: { likes: { userId } } }
   );
+
+export const NewsCommentService = (idNews, comment, userId) => {
+  const idComment = Math.floor(Date.now() * Math.random()).toString(36);
+
+  return NewsModell.findOneAndUpdate(
+    { _id: idNews },
+    {
+      $push: {
+        comments: { idComment, userId, comment, createdAt: new Date() },
+      },
+    }
+  );
+};
