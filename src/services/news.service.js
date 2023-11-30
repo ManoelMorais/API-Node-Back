@@ -63,3 +63,9 @@ export const NewsCommentService = (idNews, comment, userId) => {
     }
   );
 };
+
+export const NewsCommentDeleteService = (idPost, idComment, userId) =>
+  NewsModell.findOneAndUpdate(
+    { _id: idPost },
+    { $pull: { comments: { idComment, userId } } }
+  );

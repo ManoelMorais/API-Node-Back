@@ -12,6 +12,7 @@ import {
   NewsDelete,
   NewsLike,
   NewsComment,
+  NewsCommentDelete,
 } from "../controllers/news.controller.js";
 import { AuthMiddleware } from "../middlewares/auth.middlewares.js";
 
@@ -24,6 +25,7 @@ NewsRoute.get("/:id", AuthMiddleware, NewsByID);
 NewsRoute.patch("/:id", AuthMiddleware, NewsUpdate);
 NewsRoute.patch("/like/:id", AuthMiddleware, NewsLike);
 NewsRoute.patch("/comment/:id", AuthMiddleware, NewsComment);
+NewsRoute.patch("/comment/:idPost/:idComment", AuthMiddleware, NewsCommentDelete);
 NewsRoute.delete("/:id", AuthMiddleware, NewsDelete);
 
 export default NewsRoute;
