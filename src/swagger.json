@@ -8,16 +8,24 @@
         },
         "version": "1.0.0"
     },
-    "servers": [{
-        "url": "http://localhost:3100",
-        "description": "Local Server"
-    }],
+    "servers": [
+        {
+            "url": "https://primeia-api-node.onrender.com",
+            "description": "Render Server"
+        },
+        {
+            "url": "http://localhost:3100",
+            "description": "Local Server"
+        }
+    ],
     "paths": {
         "/user/create": {
             "post": {
                 "summary": "Create a new user",
                 "description": "Router responsible for create a new user",
-                "tags": ["User"],
+                "tags": [
+                    "User"
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -73,10 +81,14 @@
             "get": {
                 "summary": "Get all users",
                 "description": "Router responsible for get all users",
-                "tags": ["User"],
-                "security": [{
-                    "bearerAuth": []
-                }],
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -113,17 +125,23 @@
             "get": {
                 "summary": "Get a user",
                 "description": "Router responsible for get a user",
-                "tags": ["User"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "type": "integer",
-                    "description": "User ID"
-                }],
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "description": "User ID"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -158,18 +176,23 @@
             "patch": {
                 "summary": "Update a user",
                 "description": "Router responsible for update a user",
-                "tags": ["User"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "type": "integer",
-                    "description": "User ID"
-
-                }],
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "description": "User ID"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -220,7 +243,9 @@
             "post": {
                 "summary": "Login to Breaking News",
                 "description": "Route responsible for logging in a registered user",
-                "tags": ["Auth"],
+                "tags": [
+                    "Auth"
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -264,10 +289,14 @@
             "post": {
                 "summary": "Create a news",
                 "description": "Route responsible for create a news",
-                "tags": ["News"],
-                "security": [{
-                    "bearerAuth": []
-                }],
+                "tags": [
+                    "News"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -314,8 +343,11 @@
             "get": {
                 "summary": "Search all posts",
                 "description": "Route responsible for fetching all posts",
-                "tags": ["News"],
-                "parameters": [{
+                "tags": [
+                    "News"
+                ],
+                "parameters": [
+                    {
                         "in": "query",
                         "name": "limit",
                         "type": "integer"
@@ -350,7 +382,9 @@
             "get": {
                 "summary": "Fetch top news",
                 "description": "Route responsible for fetching top news",
-                "tags": ["News"],
+                "tags": [
+                    "News"
+                ],
                 "responses": {
                     "400": {
                         "description": "Not Found"
@@ -375,13 +409,17 @@
             "get": {
                 "summary": "Search news",
                 "description": "Route responsible for searching news",
-                "tags": ["News"],
-                "parameters": [{
-                    "in": "query",
-                    "name": "title",
-                    "type": "integer",
-                    "required": true
-                }],
+                "tags": [
+                    "News"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "title",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Not Found"
@@ -406,7 +444,9 @@
             "get": {
                 "summary": "Search posts by use id",
                 "description": "Route responsible for fetching posts by use id",
-                "tags": ["News"],
+                "tags": [
+                    "News"
+                ],
                 "responses": {
                     "400": {
                         "description": "Not Found"
@@ -434,17 +474,23 @@
             "patch": {
                 "summary": "Search post by id",
                 "description": "Route responsible for fetching post by id",
-                "tags": ["News"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "in": "path",
-                    "name": "id",
-                    "type": "integer",
-                    "description": "Post ID",
-                    "required": true
-                }],
+                "tags": [
+                    "News"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "description": "Post ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "401": {
                         "description": "Unauthorized"
@@ -470,17 +516,23 @@
             "patch": {
                 "summary": "Update a post",
                 "description": "Route responsible for updating a Post",
-                "tags": ["News"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "in": "path",
-                    "name": "id",
-                    "type": "integer",
-                    "description": "Post ID",
-                    "required": true
-                }],
+                "tags": [
+                    "News"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "description": "Post ID",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -524,17 +576,23 @@
             "delete": {
                 "summary": "Delete a post",
                 "description": "Route responsible for deleting a Post",
-                "tags": ["News"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "in": "path",
-                    "name": "id",
-                    "type": "integer",
-                    "description": "Post ID",
-                    "required": true
-                }],
+                "tags": [
+                    "News"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "description": "Post ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "401": {
                         "description": "Unauthorized"
@@ -552,17 +610,23 @@
             "patch": {
                 "summary": "Like a post",
                 "description": "Route responsible for liking a post",
-                "tags": ["News"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "in": "path",
-                    "name": "id",
-                    "type": "integer",
-                    "description": "User ID",
-                    "required": true
-                }],
+                "tags": [
+                    "News"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "description": "User ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "401": {
                         "description": "Unauthorized"
@@ -580,17 +644,23 @@
             "patch": {
                 "summary": "Comment on a post",
                 "description": "Route responsible for commenting on a post",
-                "tags": ["News"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "in": "path",
-                    "name": "id",
-                    "type": "string",
-                    "description": "User ID",
-                    "required": true
-                }],
+                "tags": [
+                    "News"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "User ID",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -624,23 +694,30 @@
             "patch": {
                 "summary": "Comment on a post",
                 "description": "Route responsible for commenting on a post",
-                "tags": ["News"],
-                "security": [{
-                    "bearerAuth": []
-                }],
-                "parameters": [{
-                    "in": "path",
-                    "name": "idPost",
-                    "type": "integer",
-                    "description": "Post ID",
-                    "required": true
-                }, {
-                    "in": "path",
-                    "name": "idComment",
-                    "type": "integer",
-                    "description": "Comment ID",
-                    "required": true
-                }],
+                "tags": [
+                    "News"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "idPost",
+                        "type": "integer",
+                        "description": "Post ID",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "idComment",
+                        "type": "integer",
+                        "description": "Comment ID",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -670,7 +747,6 @@
                 }
             }
         }
-
     },
     "components": {
         "securitySchemes": {
