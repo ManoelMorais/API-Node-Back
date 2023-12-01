@@ -22,10 +22,10 @@ NewsRoute.get("/top", NewsTop);
 NewsRoute.get("/search", NewsSearchByTitle);
 NewsRoute.get("/user", AuthMiddleware, NewsByUser);
 NewsRoute.get("/:id", AuthMiddleware, NewsByID);
-NewsRoute.patch("/:id", AuthMiddleware, NewsUpdate);
+NewsRoute.patch("/update/:id", AuthMiddleware, NewsUpdate);
 NewsRoute.patch("/like/:id", AuthMiddleware, NewsLike);
 NewsRoute.patch("/comment/:id", AuthMiddleware, NewsComment);
 NewsRoute.patch("/comment/:idPost/:idComment", AuthMiddleware, NewsCommentDelete);
-NewsRoute.delete("/:id", AuthMiddleware, NewsDelete);
+NewsRoute.delete("/delete/:id", AuthMiddleware, NewsDelete);
 
 export default NewsRoute;
