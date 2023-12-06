@@ -5,11 +5,15 @@ import AuthRoute from "./src/routes/auth.route.js"
 import NewsRoute from "./src/routes/news.route.js";
 import SwaggerRoute from "./src/routes/swagger.route.js";
 
+import express from "express";
+const app = express();
+
+import cors from 'cors';
+app.use(cors())
+
 import dotenv from "dotenv"
 dotenv.config()
 
-import express from "express";
-const app = express();
 
 const porta = process.env.PORT || 3100
 
